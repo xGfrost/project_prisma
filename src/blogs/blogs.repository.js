@@ -1,7 +1,11 @@
 const prisma = require("../db");
 
 const findBlogs = async() => {
-    const blogs = await prisma.blogs.findMany();
+    const blogs = await prisma.blogs.findMany({
+        where:{
+            type: "Blog"
+        }
+    });
 
     return blogs;
 };
@@ -9,7 +13,10 @@ const findBlogs = async() => {
 const findBlogsById = async (id) => {
     const blogs = await prisma.blogs.findUnique({
         where:{
-            id:id,
+            id: id,
+            AND: {
+                type: "Blog"
+            }
         },
     });
     return blogs;
@@ -29,9 +36,36 @@ const insertBlogs = async (blogsData) => {
     return blogs;
 }
 
+const deleteid = async(id) => {
+    await prisma.blogs.delete({
+        where:{
+            id:id,
+        },
+    });
+}
+
+const editBlogs = async (id, blogsData) => {
+    const blogs = await prisma.blogs.update({
+        where:{
+            id: id
+        },
+        data:{
+            name: blogsData.name,
+            description:blogsData.description,
+            image: blogsData.image,
+            status:blogsData.status,
+            type:blogsData.type,
+            video_url:blogsData.video_url,
+        }
+    })
+    return blogs;
+}
+
 
 module.exports = {
     findBlogs,
     findBlogsById,
     insertBlogs,
+    deleteid,
+    editBlogs,
 }

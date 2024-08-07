@@ -17,6 +17,8 @@ app.use(express.urlencoded({ extended:true}));
 app.use('/assets', express.static('./public/images'));
 
 const blogsController = require("./blogs/blogs.controller");
+const educationsController = require("./educations/educations.controller");
+const commentsController = require("./comments/comments.controller");
 
 app.use('/blogs',upload.single('image'), blogsController);
 app.post('/upload', upload.single('image'), (req, res) => {
@@ -25,6 +27,16 @@ app.post('/upload', upload.single('image'), (req, res) => {
         message: 'Upload Berhasil'
     })
 })
+
+app.use('/educations',upload.single('image'), educationsController);
+app.post('/upload', upload.single('image'), (req, res) => {
+    res.json({
+        data:req.filter,
+        message: 'Upload Berhasil'
+    })
+})
+
+app.use('/educations',upload.none(), commentsController);
 
 app.listen(PORT, () => {
     console.log("express API runningin port: " + PORT);

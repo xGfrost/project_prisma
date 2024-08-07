@@ -13,14 +13,47 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Blogs{
-  id          String @id @default(cuid())
+enum BlogType {
+  Blog
+  Education
+}
+
+model Blogs {
+  id          String     @id @default(cuid())
   name        String
   description String
   image       String
-  status      Boolean @default(true)
-  type        String
+  status      Boolean    @default(true)
+  type        BlogType   @default(Blog)
   video_url   String
-  created_at  DateTime @default(now())
-  updated_at  DateTime @updatedAt
+  created_at  DateTime   @default(now())
+  updated_at  DateTime   @updatedAt
+  comments    comments[]
+}
+
+enum roleUsers {
+  USER
+  ADMIN
+}
+
+model users {
+  id         String     @id @default(cuid())
+  name       String
+  email      String
+  photo_url  String
+  role       roleUsers
+  created_at DateTime   @default(now())
+  updated_at DateTime   @updatedAt
+  comments   comments[]
+}
+
+model comments {
+  id         String   @id @default(cuid())
+  user       users    @relation(fields: [user_id], references: [id])
+  user_id    String   @unique
+  blog       Blogs    @relation(fields: [blog_id], references: [id])
+  blog_id    String   @unique
+  content    String
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
 }
