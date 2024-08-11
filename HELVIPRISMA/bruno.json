@@ -1,0 +1,9 @@
+{
+  "version": "1",
+  "name": "HELVIPRISMA",
+  "type": "collection",
+  "ignore": [
+    "node_modules",
+    ".git"
+  ]
+}

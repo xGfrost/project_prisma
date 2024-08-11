@@ -1,0 +1,19 @@
+meta {
+  name: post Blogs
+  type: http
+  seq: 4
+}
+
+post {
+  url: {{baseUrl}}/
+  body: multipartForm
+  auth: none
+}
+
+body:multipart-form {
+  name: FADE
+  description: GNTENG
+  image: @file(C:\Users\Legion\OneDrive\Pictures\Screenshots\Screenshot (4).png)
+  type: Blog
+  video_url: gameplay1.mp4
+}

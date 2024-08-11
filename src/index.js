@@ -36,7 +36,7 @@ app.post('/upload', upload.single('image'), (req, res) => {
     })
 })
 
-app.use('/educations',upload.none(), commentsController);
+app.use('/comments',upload.none(), commentsController);
 
 app.listen(PORT, () => {
     console.log("express API runningin port: " + PORT);

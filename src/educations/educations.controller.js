@@ -1,5 +1,5 @@
 const express = require('express');
-const { getAllBlogs, getBlogsById, createBlogs, deleteBlogs } = require("./educations.service");
+const { getAllBlogs, getBlogsById, createBlogs, deleteBlogs, updateBlogs } = require("./educations.service");
 const router = express.Router();
 
 router.get("/", async(req, res) => {
