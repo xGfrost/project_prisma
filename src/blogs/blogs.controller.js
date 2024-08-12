@@ -4,8 +4,18 @@ const router = express.Router();
 
 router.get("/", async(req, res) => {
     try {
-        const blogs = await getAllBlogs();
-        res.send(blogs);
+        const description = req.query.description;
+        if (description) {
+            
+            const adminpos = await getAllBlogs(description);
+
+            res.send(adminpos);
+
+        
+        } else {
+            const blogs = await getAllBlogs();
+            res.send(blogs);    
+        }
         
     } catch (error) {
         res.status(400).send(error.message);

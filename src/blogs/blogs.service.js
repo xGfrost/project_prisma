@@ -1,7 +1,7 @@
 const { findBlogs, findBlogsById, insertBlogs, deleteid, editBlogs } = require("./blogs.repository");
 
-const getAllBlogs = async() => {
-    const blogs = await findBlogs();
+const getAllBlogs = async(description) => {
+    const blogs = await findBlogs(description);
 
     return blogs;
 };

@@ -1,9 +1,38 @@
 const prisma = require("../db");
 
-const findBlogs = async() => {
+const findBlogs = async(description) => {
+    // let blogs = null;
+    // if (description) {
+    //     blogs = await prisma.blogs.findMany({
+            
+    //         where:{
+    //             type: "Blog",
+    //             AND:{
+    //                 description: {
+    //                     contains: description
+    //                 }
+    //             }
+    //         }
+    //     });
+        
+    // } else {
+    //     blogs = await prisma.blogs.findMany({
+            
+    //         where:{
+    //             type: "Blog",
+    //         }
+    //     });
+    // }
+
     const blogs = await prisma.blogs.findMany({
+            
         where:{
-            type: "Blog"
+            type: "Blog",
+            AND:{
+                description: {
+                    contains: description
+                }
+            }
         }
     });
 
@@ -60,6 +89,8 @@ const editBlogs = async (id, blogsData) => {
     })
     return blogs;
 }
+
+
 
 
 module.exports = {
