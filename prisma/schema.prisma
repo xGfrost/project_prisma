@@ -50,10 +50,19 @@ model users {
 model comments {
   id         String   @id @default(cuid())
   user       users    @relation(fields: [user_id], references: [id])
-  user_id    String   
+  user_id    String
   blog       Blogs    @relation(fields: [blog_id], references: [id])
-  blog_id    String   
+  blog_id    String
   content    String
   created_at DateTime @default(now())
   updated_at DateTime @updatedAt
+}
+
+model admin_pos {
+  id           String   @id @default(cuid())
+  name         String
+  descriptions String
+  location     String
+  created_at   DateTime @default(now())
+  updated_at   DateTime @updatedAt
 }
