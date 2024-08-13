@@ -1,7 +1,7 @@
 const { findAdminpos, findadminbyid, insertadminpos, editadminpos, deleteid } = require("./adminpos.repository");
 
-const getAlladminpos = async() => {
-    const adminpos = await findAdminpos();
+const getAlladminpos = async(location) => {
+    const adminpos = await findAdminpos(location);
 
     return adminpos;
 };

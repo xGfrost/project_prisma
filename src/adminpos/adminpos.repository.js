@@ -1,7 +1,13 @@
 const prisma = require("../db");
 
-const findAdminpos = async() => {
-    const admin = await prisma.admin_pos.findMany()
+const findAdminpos = async(location) => {
+    const admin = await prisma.admin_pos.findMany({
+        where:{
+            location:{
+                contains: location
+            }
+        }
+    })
 
     return admin;
 }

@@ -1,9 +1,14 @@
 const prisma = require("../db");
 
-const findBlogs = async() => {
+const findBlogs = async(description) => {
     const blogs = await prisma.blogs.findMany({
         where:{
-            type: "Education"
+            type: "Education",
+            AND:{
+                description:{
+                    contains: description
+                }
+            }
         }
     });
 

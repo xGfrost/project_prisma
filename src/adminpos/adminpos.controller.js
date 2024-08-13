@@ -4,8 +4,17 @@ const router = express.Router();
 
 router.get("/", async(req, res) => {
     try {
-        const adminpos = await getAlladminpos();
+        const location = req.query.location;
+        let adminpos;
+        if (location) {
+             adminpos = await getAlladminpos(location);
+        } else {
+             adminpos = await getAlladminpos();
+            
+            
+        }
         res.send(adminpos);
+        
     } catch (error) {
         res.status(400).send(error.message);
     }

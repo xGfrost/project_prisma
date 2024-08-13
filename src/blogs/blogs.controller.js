@@ -5,18 +5,17 @@ const router = express.Router();
 router.get("/", async(req, res) => {
     try {
         const description = req.query.description;
+        let blogs;
         if (description) {
             
-            const adminpos = await getAllBlogs(description);
-
-            res.send(adminpos);
+             blogs = await getAllBlogs(description);
 
         
         } else {
-            const blogs = await getAllBlogs();
-            res.send(blogs);    
+             blogs = await getAllBlogs();
+               
         }
-        
+        res.send(blogs); 
     } catch (error) {
         res.status(400).send(error.message);
     }
