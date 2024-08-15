@@ -9,7 +9,6 @@ router.get("/", async(req, res) => {
         if (description) {
              educations = await getAllBlogs(description);
 
-            res.send(educations);
         } else {
              educations = await getAllBlogs();    
         }

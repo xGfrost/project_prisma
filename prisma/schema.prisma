@@ -37,14 +37,15 @@ enum roleUsers {
 }
 
 model users {
-  id         String     @id @default(cuid())
-  name       String
-  email      String
-  photo_url  String
-  role       roleUsers
-  created_at DateTime   @default(now())
-  updated_at DateTime   @updatedAt
-  comments   comments[]
+  id               String             @id @default(cuid())
+  name             String
+  email            String
+  photo_url        String
+  role             roleUsers
+  created_at       DateTime           @default(now())
+  updated_at       DateTime           @updatedAt
+  comments         comments[]
+  cleaningservices cleaningservices[]
 }
 
 model comments {
@@ -65,4 +66,17 @@ model admin_pos {
   location     String
   created_at   DateTime @default(now())
   updated_at   DateTime @updatedAt
+}
+
+model cleaningservices {
+  id               String   @id @default(cuid())
+  user             users    @relation(fields: [user_id], references: [id])
+  user_id          String
+  description      String
+  address          String
+  customer_contact Int
+  cleaning_date    DateTime
+  status           Boolean
+  created_at       DateTime @default(now())
+  updated_at       DateTime @updatedAt
 }
