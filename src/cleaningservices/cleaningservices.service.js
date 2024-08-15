@@ -1,4 +1,4 @@
-const { findcs, findcsbyid } = require("./cleaningservices.repository");
+const { findcs, findcsbyid, insertcs } = require("./cleaningservices.repository");
 
 const getAllcs = async(address) => {
     const cs = await findcs(address);
@@ -15,10 +15,16 @@ const getcsbyid = async(id) => {
     return cs;
 }
 
+const createcs = async (csdata) => {
+    const cs = await insertcs(csdata);
+    return cs;
+}
+
 
 module.exports = {
     getAllcs,
     getcsbyid,
-    
+    createcs,
+
 
 }

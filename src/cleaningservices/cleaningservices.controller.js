@@ -1,5 +1,5 @@
 const express =require('express');
-const { getAllcs, getcsbyid } = require("./cleaningservices.service");
+const { getAllcs, getcsbyid, createcs } = require("./cleaningservices.service");
 const router = express.Router();
 
 router.get("/", async (req, res) => {
@@ -25,6 +25,16 @@ router.get("/:id", async (req, res) => {
     } catch (error) {
         res.status(400).send(error.message);
     }    
+})
+
+router.post("/", async (req, res) => {
+    try {
+        const csdata = req.body;
+        const cs = await createcs(csdata);
+        res.send(cs);
+    } catch (error) {
+        res.status(400).send(error.message);
+    }
 })
 
 module.exports = router;
