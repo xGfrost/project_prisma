@@ -11,8 +11,18 @@ const findcs = async(address) => {
     return cs;
 };
 
+const findcsbyid = async (id) => {
+    const cs = await prisma.cleaningservices.findUnique({
+        where:{
+            id: id,
+        }
+    })
+    return cs;
+}
+
 
 module.exports = {
     findcs,
+    findcsbyid
 
 }
