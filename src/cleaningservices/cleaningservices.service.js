@@ -1,4 +1,4 @@
-const { findcs, findcsbyid, insertcs } = require("./cleaningservices.repository");
+const { findcs, findcsbyid, insertcs, deleteid, editcs } = require("./cleaningservices.repository");
 
 const getAllcs = async(address) => {
     const cs = await findcs(address);
@@ -20,11 +20,25 @@ const createcs = async (csdata) => {
     return cs;
 }
 
+const deletecs = async (id) => {
+    await getcsbyid(id);
+    await deleteid(id);
+}
+
+const updatecs = async (id, csdata) => {
+    await getcsbyid(id);
+    const cs = await editcs(id, csdata);
+
+    return cs;
+}
+
 
 module.exports = {
     getAllcs,
     getcsbyid,
     createcs,
+    deletecs,
+    updatecs,
 
 
 }

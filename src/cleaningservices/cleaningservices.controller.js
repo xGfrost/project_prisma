@@ -1,5 +1,5 @@
 const express =require('express');
-const { getAllcs, getcsbyid, createcs } = require("./cleaningservices.service");
+const { getAllcs, getcsbyid, createcs, deletecs, updatecs } = require("./cleaningservices.service");
 const router = express.Router();
 
 router.get("/", async (req, res) => {
@@ -36,5 +36,29 @@ router.post("/", async (req, res) => {
         res.status(400).send(error.message);
     }
 })
+
+router.post("/update/:id", async (req, res) => {
+    try {
+        const id = req.params.id
+        const csdata = req.body;
+        const cs = await updatecs(id,csdata);
+        res.send(cs);
+    } catch (error) {
+        res.status(400).send(error.message);
+    }
+})
+
+router.post("/delete/:id", async (req, res) => {
+    try {
+        const id = req.params.id;
+        await deletecs(id);
+        res.send({
+            message:"Success"
+        });
+    } catch (error) {
+        res.status(400).send(error.message);
+    }
+})
+
 
 module.exports = router;
