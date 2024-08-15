@@ -6,7 +6,12 @@ const findcs = async(address) => {
         where:{
             address:{
                 contains: address
-            }
+            },
+        },
+        include:{
+            user: true,
+            
+    
         }
     })
     return cs;
@@ -16,6 +21,9 @@ const findcsbyid = async (id) => {
     const cs = await prisma.cleaningservices.findUnique({
         where:{
             id: id,
+        },
+        include:{
+            user:true,
         }
     })
     return cs;

@@ -33,6 +33,10 @@ const findBlogs = async(description) => {
                     contains: description
                 }
             }
+            
+        },
+        include:{
+            comments:true
         }
     });
 
@@ -47,6 +51,9 @@ const findBlogsById = async (id) => {
                 type: "Blog"
             }
         },
+        include:{
+            comments:true
+        }
     });
     return blogs;
 };

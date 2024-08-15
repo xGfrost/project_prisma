@@ -9,6 +9,9 @@ const findBlogs = async(description) => {
                     contains: description
                 }
             }
+        },
+        include:{
+            comments:true
         }
     });
 
@@ -23,6 +26,9 @@ const findBlogsById = async (id) => {
                 type: "Education"
             }
         },
+        include:{
+            comments:true
+        }
     });
     return blogs;
 };
