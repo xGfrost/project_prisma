@@ -42,10 +42,13 @@ model users {
   email            String
   photo_url        String
   role             roleUsers
+  point            Int
+  coin             Int
   created_at       DateTime           @default(now())
   updated_at       DateTime           @updatedAt
   comments         comments[]
   cleaningservices cleaningservices[]
+  wastereports     wastereports[]
 }
 
 model comments {
@@ -79,4 +82,18 @@ model cleaningservices {
   status           Boolean
   created_at       DateTime @default(now())
   updated_at       DateTime @updatedAt
+}
+
+model wastereports {
+  id          String   @id @default(cuid())
+  user        users    @relation(fields: [user_id], references: [id])
+  user_id     String
+  location    String
+  description String
+  image       String
+  point       Int
+  coin        Int
+  status      Boolean
+  created_at  DateTime @default(now())
+  updated_at  DateTime @updatedAt
 }
