@@ -93,7 +93,7 @@ model wastereports {
   image       String
   point       Int
   coin        Int
-  status      Boolean
+  status      Boolean   @default(false)
   created_at  DateTime @default(now())
   updated_at  DateTime @updatedAt
 }

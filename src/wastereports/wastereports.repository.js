@@ -24,9 +24,24 @@ const findwrbyid = async (id) => {
     return wr;
 }
 
+const insertwr = async (wrdata) => {
+    const wr = await prisma.wastereports.create({
+        data:{
+            user_id: wrdata.user_id,
+            location: wrdata.location,
+            description: wrdata.description,
+            image: wrdata.image,
+            point: wrdata.point,
+            coin: wrdata.coin,
+        }
+    })
+    return wr;
+}
+
 
 module.exports = {
     findwr,
     findwrbyid,
+    insertwr,
 
 }

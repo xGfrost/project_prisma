@@ -1,5 +1,5 @@
 const express = require('express');
-const { getallws, getallwsbyid } = require("./wastereports.service");
+const { getallws, getallwsbyid, createws } = require("./wastereports.service");
 const router = express.Router();
 
 router.get("/", async (req, res) => {
@@ -23,6 +23,24 @@ router.get("/:id", async (req,res) => {
         const wr = await getallwsbyid(id);
 
         res.send(wr);
+    } catch (error) {
+        res.status(400).send(error.message);
+    }
+})
+
+router.post("/", async (req, res) => {
+    const {file} = req;
+    const image = file.filename;
+    try {
+        const wsdata = req.body;
+        wsdata.image = image;
+
+        const ws = await createws(wsdata);
+
+        res.send({
+            data: ws,
+            message: "Success"
+        });
     } catch (error) {
         res.status(400).send(error.message);
     }
