@@ -34,8 +34,9 @@ const insertwr = async (wrdata) => {
             location: wrdata.location,
             description: wrdata.description,
             image: wrdata.image,
-            point: wrdata.point,
-            coin: wrdata.coin,
+            point: parseInt(wrdata.point) ,
+            coin: parseInt(wrdata.coin) ,
+            status: wrdata.status,
         }
     })
     return wr;

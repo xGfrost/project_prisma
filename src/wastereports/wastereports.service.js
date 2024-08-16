@@ -16,10 +16,10 @@ const getallwsbyid = async (id) => {
     return ws;
 }
 
-const createws = async (wsdata) => {
-    const ws = await insertwr(wsdata);
+const createwr = async (wrdata) => {
+    const wr = await insertwr(wrdata);
 
-    return ws;
+    return wr;
 }
 
 const deletewr = async (id) => {
@@ -37,7 +37,7 @@ const updatewr = async (id, wrdata) => {
 module.exports ={
     getallws,
     getallwsbyid,
-    createws,
+    createwr,
     deletewr,
     updatewr,
 
