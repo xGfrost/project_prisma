@@ -29,9 +29,11 @@ const deletewr = async (id) => {
 
 const updatewr = async (id, wrdata) => {
     await getallwsbyid(id);
-    const ws = await editwr(id, wrdata);
+    const wr = await editwr(id, wrdata);
 
-    return ws;
+    
+
+    return wr;
 }
 
 module.exports ={

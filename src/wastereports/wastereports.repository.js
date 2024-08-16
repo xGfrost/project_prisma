@@ -56,9 +56,27 @@ const editwr = async (id, wrdata) => {
             id: id
         },
         data:{
-            status: wrdata.status,
+            status: Boolean(wrdata.status),
         }
+        
     })
+
+    if(wr.status === true){
+        await prisma.users.update({
+            where:{
+                id: wr.user_id,
+            },
+            data:{
+                point:{
+                    increment: wr.point,
+                },
+                coin:{
+                    increment: wr.coin,
+                }
+            }
+            
+        })
+    }
     return wr;
 }
 
