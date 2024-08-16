@@ -18,7 +18,10 @@ const findwr = async (location) => {
 const findwrbyid = async (id) => {
     const wr = await prisma.wastereports.findUnique({
         where:{
-            id:id
+            id: id,
+        },
+        include:{
+            user: true
         }
     })
     return wr;

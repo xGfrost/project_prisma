@@ -19,7 +19,7 @@ router.get("/", async (req, res) => {
 
 router.get("/:id", async (req,res) => {
     try {
-        const id = req.params;
+        const id = req.params.id;
         const wr = await getallwsbyid(id);
 
         res.send(wr);

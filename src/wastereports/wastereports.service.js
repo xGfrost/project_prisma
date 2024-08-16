@@ -9,7 +9,7 @@ const getallws = async (location) => {
 const getallwsbyid = async (id) => {
     const ws = await findwrbyid(id);
 
-    if(!cs){
+    if(!ws){
         throw Error("waste reports id not found");
     }
 
