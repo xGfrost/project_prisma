@@ -16,11 +16,17 @@ const findwr = async (location) => {
 }
 
 const findwrbyid = async (id) => {
-    
+    const wr = await prisma.wastereports.findUnique({
+        where:{
+            id:id
+        }
+    })
+    return wr;
 }
 
 
 module.exports = {
     findwr,
+    findwrbyid,
 
 }
