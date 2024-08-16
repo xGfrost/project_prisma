@@ -24,6 +24,7 @@ const educationsController = require("./educations/educations.controller");
 const commentsController = require("./comments/comments.controller");
 const adminController = require("./adminpos/adminpos.controller");
 const cleaningservicesController = require("./cleaningservices/cleaningservices.controller");
+const wastereportsController = require("./wastereports/wastereports.controller");
 
 app.use('/blogs',upload.single('image'), blogsController);
 app.post('/upload', upload.single('image'), (req, res) => {
@@ -44,6 +45,14 @@ app.post('/upload', upload.single('image'), (req, res) => {
 app.use('/comments',upload.none(), commentsController);
 app.use('/admin_pos',upload.none(), adminController);
 app.use('/cleaningservices', upload.none(), cleaningservicesController);
+
+app.use('/wastereports',upload.single('image'), wastereportsController);
+app.post('/upload', upload.single('image'), (req, res) => {
+    res.json({
+        data:req.filter,
+        message: 'Upload Berhasil'
+    })
+})
 
 app.listen(PORT, () => {
     console.log("express API runningin port: " + PORT);
