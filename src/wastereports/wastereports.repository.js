@@ -1,4 +1,3 @@
-const moment = require('moment-timezone');
 const prisma = require("../db");
 
 const findwr = async (location) => {
