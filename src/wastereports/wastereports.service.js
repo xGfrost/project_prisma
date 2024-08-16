@@ -1,4 +1,4 @@
-const { findwr, findwrbyid, insertwr } = require("./wastereports.repository");
+const { findwr, findwrbyid, insertwr, deleteid, editwr } = require("./wastereports.repository");
 
 const getallws = async (location) => {
     const ws = await findwr(location);
@@ -22,9 +22,24 @@ const createws = async (wsdata) => {
     return ws;
 }
 
+const deletewr = async (id) => {
+    await getallwsbyid(id);
+    await deleteid(id);
+}
+
+const updatewr = async (id, wrdata) => {
+    await getallwsbyid(id);
+    const ws = await editwr(id, wrdata);
+
+    return ws;
+}
+
 module.exports ={
     getallws,
     getallwsbyid,
-    createws
+    createws,
+    deletewr,
+    updatewr,
+
 
 }

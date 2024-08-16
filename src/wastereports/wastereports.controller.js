@@ -1,5 +1,5 @@
 const express = require('express');
-const { getallws, getallwsbyid, createws } = require("./wastereports.service");
+const { getallws, getallwsbyid, createws, deletewr, updatewr } = require("./wastereports.service");
 const router = express.Router();
 
 router.get("/", async (req, res) => {
@@ -41,6 +41,33 @@ router.post("/", async (req, res) => {
             data: ws,
             message: "Success"
         });
+    } catch (error) {
+        res.status(400).send(error.message);
+    }
+})
+
+router.post("/delete/:id", async (req, res) => {
+    try {
+        const id = req.params.id;
+        await deletewr(id);
+        res.send({
+            message:"Success"
+        })
+    } catch (error) {
+        req.status(400).send(error.message);
+    }
+})
+
+router.post("/update/:id", async (req, res) => {
+    try {
+        const id = req.params.id;
+        const wsdata = req.body;
+        const ws = await updatewr(id, wsdata);
+
+        res.send({
+            data: ws,
+            message:"Success"
+        })
     } catch (error) {
         res.status(400).send(error.message);
     }

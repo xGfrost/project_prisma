@@ -41,10 +41,32 @@ const insertwr = async (wrdata) => {
     return wr;
 }
 
+const deleteid = async (id) => {
+    await prisma.wastereports.delete({
+        where:{
+            id: id,
+        }
+    });
+}
+
+const editwr = async (id, wrdata) => {
+    const wr = await prisma.wastereports.update({
+        where:{
+            id: id
+        },
+        data:{
+            status: wrdata.status,
+        }
+    })
+    return wr;
+}
+
 
 module.exports = {
     findwr,
     findwrbyid,
     insertwr,
+    editwr,
+    deleteid,
 
 }
