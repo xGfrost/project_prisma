@@ -26,6 +26,7 @@ const adminController = require("./adminpos/adminpos.controller");
 const cleaningservicesController = require("./cleaningservices/cleaningservices.controller");
 const wastereportsController = require("./wastereports/wastereports.controller");
 const communitiesController = require("./communities/communities.controller");
+const badgesController = require("./badges/badges.controller");
 
 app.use('/blogs',upload.single('image'), blogsController);
 app.post('/upload', upload.single('image'), (req, res) => {
@@ -56,6 +57,14 @@ app.post('/upload', upload.single('image'), (req, res) => {
 })
 
 app.use('/communities',upload.single('image'), communitiesController);
+app.post('/upload', upload.single('image'), (req, res) => {
+    res.json({
+        data:req.filter,
+        message: 'Upload Berhasil'
+    })
+})
+
+app.use('/badges',upload.single('image'), badgesController);
 app.post('/upload', upload.single('image'), (req, res) => {
     res.json({
         data:req.filter,

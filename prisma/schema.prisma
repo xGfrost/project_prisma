@@ -109,3 +109,12 @@ model communities {
   created_at  DateTime @default(now())
   updated_at  DateTime @updatedAt
 }
+
+model badges {
+  id          String   @id @default(cuid())
+  name        String
+  description String
+  image       String
+  created_at  DateTime @default(now())
+  updated_at  DateTime @updatedAt
+}
