@@ -1,7 +1,16 @@
-const { findbadges, insertbg, deleteid, editbg } = require("./badges.repository");
+const { findbadges, insertbg, deleteid, editbg, findbgid } = require("./badges.repository");
 
 const getallbadges = async () => {
     const bg = await findbadges();
+    return bg;
+}
+
+const getbgbyid = async (id) => {
+    const bg = await findbgid(id);
+    if(!bg){
+        throw Error("badges id not found");
+        
+    }
     return bg;
 }
 
@@ -24,4 +33,5 @@ module.exports ={
     createbg,
     deletebg,
     updatebg,
+    getbgbyid,
 }

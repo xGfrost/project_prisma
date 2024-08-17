@@ -11,6 +11,15 @@ const findbadges = async (name) => {
     return bg;
 }
 
+const findbgid = async (id) => {
+    const bg = await prisma.badges.findUnique({
+        where:{
+            id, id
+        }
+    })
+    return bg;
+}
+
 const insertbg = async (bgdata) => {
     const bg = await prisma.badges.create({
         data:{
@@ -41,6 +50,7 @@ const editbg = async (id,bgdata) => {
             image:bgdata.image
         }
     })
+    return bg;
 }
 
 
@@ -50,5 +60,6 @@ module.exports = {
     insertbg,
     deleteid,
     editbg,
+    findbgid,
 
 }

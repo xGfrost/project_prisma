@@ -1,5 +1,5 @@
 const express = require('express');
-const { getallbadges, createbg, updatebg } = require("./badges.service");
+const { getallbadges, createbg, updatebg, getbgbyid } = require("./badges.service");
 const router = express.Router();
 
 router.get("/", async (req, res) => {
@@ -16,6 +16,16 @@ router.get("/", async (req, res) => {
         res.status(400).send(error.message);
     }
 })
+
+router.get("/:id", async(req,res) => {
+    try {
+        const id = req.params.id
+        const bg = await getbgbyid(id);
+        res.send(bg);
+    } catch (error) {
+        res.status(400).send(error.message);
+    }
+});
 
 router.post("/", async(req, res) => {
     const {file} = req;
