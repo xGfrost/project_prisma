@@ -1,4 +1,4 @@
-const { findcommunities, findctbyid } = require("./communities.repository");
+const { findcommunities, findctbyid, insertct, deleteid, editct } = require("./communities.repository");
 
 const getallcommunities = async (name) => {
     const ct = await findcommunities(name);
@@ -15,9 +15,29 @@ const getallcommunitiesbyid = async (id) => {
     return ct
 }
 
+const createct = async (ctdata) => {
+    const ct = await insertct(ctdata);
+
+    return ct;
+}
+
+const deletecommunities = async (id) => {
+    await getallcommunitiesbyid(id);
+    await deleteid(id);
+}
+
+const updatect = async (id, ctdata) => {
+    await getallcommunitiesbyid;
+    const ct = await editct(id, ctdata);
+
+    return ct;
+}
+
 module.exports = {
     getallcommunities,
     getallcommunitiesbyid,
-
+    createct,
+    deletecommunities,
+    updatect,
 
 }
