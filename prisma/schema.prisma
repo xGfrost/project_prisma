@@ -49,6 +49,7 @@ model users {
   comments         comments[]
   cleaningservices cleaningservices[]
   wastereports     wastereports[]
+  communities      communities[]
 }
 
 model comments {
@@ -94,6 +95,17 @@ model wastereports {
   point       Int
   coin        Int
   status      Boolean  @default(false)
+  created_at  DateTime @default(now())
+  updated_at  DateTime @updatedAt
+}
+
+model communities {
+  id          String   @id @default(cuid())
+  user        users    @relation(fields: [user_id], references: [id])
+  user_id     String
+  name        String
+  description String
+  image       String
   created_at  DateTime @default(now())
   updated_at  DateTime @updatedAt
 }
